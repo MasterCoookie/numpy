@@ -59,8 +59,52 @@ EXC[2, 2] = 9
 print(EXC)
 
 # be careful while copying! Those are NOT lists!
-a = np.array([1, 2, 3])
-b = a
-b[0] = 100
-print(a, b)
-# use a.copy()
+A = np.array([1, 2, 3])
+B = A
+B[0] = 100
+print(A, B)
+# use A.copy()
+
+# u can do all the mathematics quite easy
+maths = np.array([1, 2, 3, 4])
+maths += 2 # works with - / *, powers etc
+print(maths)
+
+# works with other arrays too
+maths_2 = np.array([2, 2, 0, 1])
+maths -= maths_2
+print(maths)
+
+# the mins and max work same as usual
+print(np.max(maths))
+
+# summing the entire array
+print(np.sum(maths_2))
+
+# reorganizing
+before = np.array([[1, 2, 3, 4], [5, 6, 7, 8]])
+print(before)
+
+after = before.reshape((4, 2))
+print(after)
+
+# vertical stacking (just as it sounds, u stack one array on top of another)
+v1 = np.array([1, 2, 3, 4])
+v2 = np.array([5, 6, 7, 8])
+
+# args: what on top of what
+stacked = np.vstack([v1, v2])
+
+print(stacked)
+
+# horizontal is rather simmilar
+h1 = np.ones((2, 4))
+h2 = np.zeros((2, 2))
+
+stacked = np.hstack([h1, h2])
+
+print(stacked)
+
+# some random stuff
+filedata = np.genfromtxt('data.txt', delimiter=',')
+print(filedata)
