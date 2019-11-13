@@ -3,7 +3,11 @@
 Numpy is used to work on multi-dmientional array and is much faster than lists.
 Its faster for a number of reasons like all the elements are the same type or each element
 doesnt have properties like size or num of references. The numpy arrays also use
-Contiguous memory (the pointers are tidly oredered one next to each other).'''
+Contiguous memory (the pointers are tidly oredered one next to each other).
+
+Note:
+axis=0 -> y axis (up-down)
+axis=1 -> x axis (left-right)'''
 import numpy as np
 
 # a cool example of what we can do with numpy
@@ -106,5 +110,35 @@ stacked = np.hstack([h1, h2])
 print(stacked)
 
 # some random stuff
+# read from file
 filedata = np.genfromtxt('data.txt', delimiter=',')
+#change data type
+filedata = filedata.astype('int32')
+
 print(filedata)
+
+# boolean masking
+print(filedata > 50)
+
+# a somewhat simmilar function
+# any works like "OR", all works like "AND"
+print(np.any(filedata > 50, axis=0))
+print(np.all(filedata > 50, axis=0))
+
+# now thats a cool thing: indexing by boolean
+print(filedata[filedata > 50])
+
+# a reason why this works is that u can index with lists in numpy
+A = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9])
+print(A[[1, 2, -1]])
+
+# quick exercise
+arr = []
+for index in range(1, 31):
+    arr.append(index)
+
+arr = np.array(arr).reshape(6, 5)
+
+print(arr[2:4, 0:2])
+print(arr[[0, 1, 2, 3], [1, 2, 3, 4]])
+print(arr[[0, 4, 5], 3:5])
